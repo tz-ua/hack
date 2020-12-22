@@ -259,7 +259,7 @@
 *         property="workplace",
 *         description="Place where user works",
 *         type="object",
-*         @OA/schema(ref="#/components/schemas/WorkplaceSchema")
+*         @OA\Schema(ref="#/components/schemas/WorkplaceSchema")
 *     ),
 * )
  */

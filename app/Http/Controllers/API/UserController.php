@@ -96,7 +96,7 @@ class UserController extends Controller
      *             @OA\Property(
      *                property="data",
      *                type="object",
-     *                ref="#/components/schemas/UserSchema"
+     *                ref="#/components/schemas/UserSchemaResponse"
      *             )
      *         )
      *      ),
@@ -108,7 +108,7 @@ class UserController extends Controller
      *      @OA\RequestBody(
      *          required=true,
      *          description="Keyword data",
-     *          @OA\JsonContent(ref="#/components/schemas/UserSchema")
+     *          @OA\JsonContent(ref="#/components/schemas/UserSchemaRequest")
      *      )
      * )
      */
