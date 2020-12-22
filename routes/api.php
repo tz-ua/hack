@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\WorkplaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::prefix('users')
         Route::delete('{user}', [UserController::class, 'destroy'])->name('destroy');
     });
 
+Route::apiResource('workplaces', WorkplaceController::class);
+    
 Route::post('/test', [\App\Http\Controllers\TestController::class, 'testPost'])
     ->name('testPost');
 
