@@ -24,7 +24,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users',
+            'user_id' => 'required|exists:users,id',
             'start_date' => 'required|date|before:start_date',
             'end_date' => 'required|date|after:end_date',
         ];

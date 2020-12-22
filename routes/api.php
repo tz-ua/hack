@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\WorkplaceController;
-use App\Http\Controllers\LeaveRequestController;
+use App\Http\Controllers\API\LeaveRequestController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
