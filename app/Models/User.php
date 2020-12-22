@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 *     schema="UserSchema",
 *     description="User model",
 *     title="User schema",
+ *     required={"name", "email"},
 *     @OA\Property(
 *         property="name",
 *         description="Name of user",
@@ -20,7 +21,6 @@ use Illuminate\Notifications\Notifiable;
 *         example="John",
 *         minLength=1,
 *         maxLength=255,
-*         required=true
 *     ),
 *     @OA\Property(
 *         property="email",
@@ -29,7 +29,6 @@ use Illuminate\Notifications\Notifiable;
 *         example="john.doe@gmail.com",
 *         minLength=1,
 *         maxLength=255,
-*         required=true
 *     ),
 *     @OA\Property(
 *         property="photo",
@@ -78,7 +77,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     * 
+     *
      * @var array
      */
     protected $fillable = [
