@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -90,5 +91,11 @@ class User extends Authenticatable
         'workplace_id',
     ];
 
-    // @todo add relations
+    /**
+     * @return BelongsTo
+     */
+    public function workplace(): BelongsTo
+    {
+        return $this->belongsTo(Workplace::class, 'workplace_id', 'id');
+    }
 }

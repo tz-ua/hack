@@ -100,6 +100,85 @@
                         }
                     }
                 }
+            },
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update User",
+                "description": "Update existing user",
+                "operationId": "userUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of User",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Keyword data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserSchema"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/workplaces": {
+            "get": {
+                "tags": [
+                    "Workplace"
+                ],
+                "summary": "Get Workplaces list",
+                "description": "Returns list of Workplaces",
+                "operationId": "workplaceIndex",
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkplaceSchema"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/api/leave_requests": {
@@ -357,6 +436,20 @@
                         "description": "Place where user works",
                         "type": "integer",
                         "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "WorkplaceSchema": {
+                "title": "Workplace schema",
+                "description": "Workplace model",
+                "properties": {
+                    "name": {
+                        "description": "Workplace identity name",
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "example": "Johnny Sins workplace"
                     }
                 },
                 "type": "object"
