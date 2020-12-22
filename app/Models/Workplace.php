@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
 *
@@ -29,4 +30,12 @@ class Workplace extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * @return MorphOne
+     */
+    public function equipment(): MorphOne
+    {
+        return $this->morphOne(Equipment::class, 'equipmentable');
+    }
 }

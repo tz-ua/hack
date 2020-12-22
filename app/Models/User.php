@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -97,5 +98,13 @@ class User extends Authenticatable
     public function workplace(): BelongsTo
     {
         return $this->belongsTo(Workplace::class, 'workplace_id', 'id');
+    }
+
+    /**
+     * @return MorphOne
+     */
+    public function equipment(): MorphOne
+    {
+        return $this->morphOne(Equipment::class, 'equipmentable');
     }
 }
