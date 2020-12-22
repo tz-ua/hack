@@ -25,8 +25,8 @@ class CreateRequest extends FormRequest
     {
         return [
             'user_id' => 'required|exists:users,id',
-            'start_date' => 'required|date|before:start_date',
-            'end_date' => 'required|date|after:end_date',
+            'start_date' => 'required|date|before_or_equal:end_date|date_format:Y-m-d',
+            'end_date' => 'required|date|after_or_equal:start_date|date_format:Y-m-d',
         ];
     }
 }
