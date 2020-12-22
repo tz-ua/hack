@@ -93,7 +93,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserSchemaRequest"
+                                    "$ref": "#/components/schemas/UserSchemaResponse"
                                 }
                             }
                         }
@@ -475,6 +475,11 @@
                     "workplace": {
                         "description": "Place where user works",
                         "type": "object"
+                    },
+                    "online": {
+                        "description": "Is user online",
+                        "type": "boolean",
+                        "example": true
                     }
                 },
                 "type": "object"

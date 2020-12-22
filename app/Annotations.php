@@ -129,8 +129,8 @@
  *
 * @OA\Schema(
 *     schema="UserSchemaRequest",
-*     description="User model",
-*     title="User schema",
+*     description="User model for request",
+*     title="User schema request",
 *     required={"name", "email"},
 *     @OA\Property(
 *         property="name",
@@ -190,8 +190,8 @@
 *
 * @OA\Schema(
 *     schema="UserSchemaResponse",
-*     description="User model",
-*     title="User schema",
+*     description="User model for response",
+*     title="User schema response",
 *     required={"name", "email"},
 *     @OA\Property(
 *         property="name",
@@ -238,14 +238,20 @@
 *         description="Team of user",
 *         type="string",
 *         example="Nexus",
-*         minLength=1,
-*         maxLength=255,
-*     ),
-*     @OA\Property(
-*         property="workplace",
-*         description="Place where user works",
-*         type="object",
-*         @OA\Schema(ref="#/components/schemas/WorkplaceSchema")
-*     ),
-* )
+ *         minLength=1,
+ *         maxLength=255,
+ *     ),
+ *     @OA\Property(
+ *         property="workplace",
+ *         description="Place where user works",
+ *         type="object",
+ *         @OA\Schema(ref="#/components/schemas/WorkplaceSchema")
+ *     ),
+ *     @OA\Property(
+ *         property="online",
+ *         description="Is user online",
+ *         type="boolean",
+ *        example=true
+ *     ),
+ * )
  */
