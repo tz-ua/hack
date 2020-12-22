@@ -71,20 +71,6 @@
  * )
  *
  * @OA\Schema(
- *     schema="TestJsonRequest",
- *     description="Admin categroy validation request",
- *     title="Admin categroy validation request",
- *     @OA\Property(
- *         property="fieldName",
- *         description="test field",
- *         type="string",
- *         example="Example value",
- *         minLength=1,
- *         maxLength=255
- *     )
- * )
- *
- * @OA\Schema(
  *     schema="LeaveRequestJsonRequest",
  *     description="Leave Request validation request",
  *     title="Leave Request validation request",
