@@ -31,4 +31,10 @@ use Illuminate\Support\Carbon;
 class LeaveRequest extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'start_date',
+        'end_date',
+    ];
 }
