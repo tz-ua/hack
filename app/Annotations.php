@@ -49,7 +49,7 @@
  * )
  *
  * @OA\Tag(
- *     name="LeaveRequest",
+ *     name="Leave Request",
  *     description="User's leave request",
  * )
  */
