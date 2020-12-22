@@ -24,7 +24,7 @@ class UserController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchemaRequest")
      *     )
      * )
      */
@@ -48,12 +48,12 @@ class UserController extends Controller
      *      @OA\RequestBody(
      *         required=true,
      *         description="Json Content",
-     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchemaRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchemaResponse")
      *     ),
      *      @OA\Response(
      *          response=422,
