@@ -33,6 +33,35 @@ class WorkplaceController extends Controller
         return response()->json(Workplace::all());
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  App\Http\Requests\StoreWorkplaceRequest  $request
+     * @return \Illuminate\Http\Response
+     *
+     * @OA\Post(
+     *      path="/api/workplaces",
+     *      tags={"Workplace"},
+     *      operationId="workplaceCreate",
+     *      summary="Create new Workplace",
+     *      description="Create new Workplace",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         description="Json Content",
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfull operation",
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *     ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse")
+     *      )
+     * )
+     */
     public function create(StoreWorkplaceRequest $request): JsonResponse
     {
         $workplace = Workplace::create($request->validated());

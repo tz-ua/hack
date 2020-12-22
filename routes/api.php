@@ -37,7 +37,11 @@ Route::group([
     Route::post('', [LeaveRequestController::class, 'create'])->name('create');
 });
 
-Route::apiResource('workplaces', WorkplaceController::class);
+Route::prefix('workplaces')
+    ->group(static function (): void {
+        Route::get('', [WorkplaceController::class, 'index'])->name('index');
+        Route::post('', [WorkplaceController::class, 'create'])->name('store');
+    });
 
 Route::post('/test', [TestController::class, 'testPost'])
     ->name('testPost');

@@ -57,7 +57,12 @@ class LeaveRequestController extends Controller
      *         response=200,
      *         description="Successfull operation",
      *         @OA\JsonContent(ref="#/components/schemas/LeaveRequestJsonModel")
-     *     )
+     *     ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse")
+     *      )
      * )
      */
     public function create(CreateRequest $createRequest): JsonResponse

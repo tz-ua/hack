@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class UserController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchemaRequest")
      *     )
      * )
      */
@@ -35,7 +36,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      *
      * @OA\Post(
@@ -47,13 +48,18 @@ class UserController extends Controller
      *      @OA\RequestBody(
      *         required=true,
      *         description="Json Content",
-     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchemaRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
-     *     )
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchemaResponse")
+     *     ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse")
+     *      )
      * )
      */
     public function store(StoreUserRequest $request)
@@ -67,10 +73,48 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @OA\Patch(
+     *      path="/api/users/{id}",
+     *      tags={"User"},
+     *      operationId="userUpdate",
+     *      summary="Update User",
+     *      description="Update existing user",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Id of User",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *             @OA\Property(
+     *                property="data",
+     *                type="object",
+     *                ref="#/components/schemas/UserSchema"
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Keyword data",
+     *          @OA\JsonContent(ref="#/components/schemas/UserSchema")
+     *      )
+     * )
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        return $user->update($request->validated());
     }
 
     /**
@@ -99,9 +143,9 @@ class UserController extends Controller
      *          description="Successful operation",
      *      ),
      *      @OA\Response(
-     *          response=401,
-     *          description="Unauthorized",
-     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse")
      *      )
      * )
      */
