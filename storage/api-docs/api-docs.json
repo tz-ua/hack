@@ -13,6 +13,28 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list of Users",
+                "description": "Returns list of Users",
+                "operationId": "userIndex",
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/test": {
             "get": {
                 "tags": [
@@ -114,6 +136,18 @@
         {
             "name": "Authorization",
             "description": "Admin login and other authorization related actions"
+        },
+        {
+            "name": "Workplace",
+            "description": "Entity describing working place of User"
+        },
+        {
+            "name": "User",
+            "description": "Member of Hero Teams"
+        },
+        {
+            "name": "LeaveRequest",
+            "description": "User's leave request"
         }
     ],
     "security": [
