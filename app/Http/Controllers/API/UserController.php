@@ -38,10 +38,40 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @OA\Post(
+     *      path="/api/users",
+     *      tags={"User"},
+     *      operationId="userCreate",
+     *      summary="Create User",
+     *      description="Create new User",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         description="Json Content",
+     *         @OA\JsonContent(ref="#/components/schemas/TestJsonRequest")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfull operation",
+     *         @OA\JsonContent(
+     *             type="object"
+     *         )
+     *     )
+     * )
      */
     public function store(Request $request)
     {
-        //
+        // @todo move validation to UserRequest
+        // workplace_id unique:workplaces
+        return User::create($request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'phone' => 'max:255',
+            'photo' => 'max:255',
+            'position' => 'max:255',
+            'team' => 'max:255',
+            'workplace_id' => 'integer',
+        ]));
     }
 
     /**
