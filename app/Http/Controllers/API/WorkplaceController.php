@@ -10,6 +10,24 @@ use App\Models\Workplace;
 
 class WorkplaceController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     *
+     * @OA\Get(
+     *      path="/api/workplaces",
+     *      tags={"Workplace"},
+     *      operationId="workplaceIndex",
+     *      summary="Get Workplaces list",
+     *      description="Returns list of Workplaces",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfull operation",
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *     )
+     * )
+     */
     public function index(): JsonResponse
     {
         return response()->json(Workplace::all());
