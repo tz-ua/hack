@@ -21,14 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('position')->nullable();
             $table->string('team')->nullable();
             $table->string('photo')->nullable();
-            $table->unsignedInteger('workplace_id')->index()->nullable();
+            $table->unsignedBigInteger('workplace_id')->index()->nullable();
             $table->timestamps();
-
-//            $table
-//                ->foreign('workplace_id')
-//                ->references('id')
-//                ->on('workplaces')
-//                ->onDelete('cascade');
         });
     }
 
