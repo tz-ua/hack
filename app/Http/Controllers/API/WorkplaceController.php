@@ -4,9 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkplaceRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Workplace;
+use Illuminate\Http\Response;
 
 class WorkplaceController extends Controller
 {
@@ -24,7 +26,7 @@ class WorkplaceController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchemaResponse")
      *     )
      * )
      */
@@ -48,12 +50,12 @@ class WorkplaceController extends Controller
      *      @OA\RequestBody(
      *         required=true,
      *         description="Json Content",
-     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchemaRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchemaResponse")
      *     ),
      *      @OA\Response(
      *          response=422,
@@ -67,5 +69,37 @@ class WorkplaceController extends Controller
         $workplace = Workplace::create($request->validated());
 
         return response()->json($workplace);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     *
+     * @OA\Get(
+     *     path="/api/workplaces/{id}",
+     *     tags={"Workplace"},
+     *     operationId="workplaceGet",
+     *     summary="Get specific Workplace",
+     *     description="Returns specific Workplace with User detailed information",
+     *     @OA\Parameter(
+     *         name="id",
+     *         description="Id of Workplace",
+     *         required=true,
+     *         in="path",
+     *         @OA\Schema(
+     *             type="integer"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfull operation",
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchemaResponse")
+     *     )
+     * )
+     */
+    public function show(Workplace $workplace)
+    {
+        return $workplace;
     }
 }

@@ -18,7 +18,7 @@
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="hack",
+ *      title="rado",
  *      description="Documentation for hackaton project",
  *      @OA\Contact(
  *          email="mail@example.com"
@@ -32,11 +32,6 @@
 
 /**
  * Tags
- *
- * @OA\Tag(
- *     name="Authorization",
- *     description="Admin login and other authorization related actions",
- * )
  *
  * @OA\Tag(
  *     name="Workplace",
@@ -321,7 +316,7 @@
  *         property="workplace",
  *         description="Place where user works",
  *         type="object",
- *         @OA\Schema(ref="#/components/schemas/WorkplaceSchema")
+ *         @OA\Schema(ref="#/components/schemas/WorkplaceSchemaResponse")
  *     ),
  *     @OA\Property(
  *         property="online",
@@ -330,4 +325,38 @@
  *        example=true
  *     ),
  * )
+ *
+ * @OA\Schema(
+*     schema="WorkplaceSchemaRequest",
+*     description="Workplace model for request",
+*     title="Workplace schema request",
+*     @OA\Property(
+*         property="name",
+*         description="Workplace identity name",
+*         type="string",
+*         example="Johnny Sins workplace",
+*         minLength=1,
+*         maxLength=100,
+*     ),
+* )
+*
+* @OA\Schema(
+*     schema="WorkplaceSchemaResponse",
+*     description="Workplace model for response",
+*     title="Workplace schema response",
+*     @OA\Property(
+*         property="name",
+*         description="Workplace identity name",
+*         type="string",
+*         example="Johnny Sins workplace",
+*         minLength=1,
+*         maxLength=100,
+*     ),
+*     @OA\Property(
+*         property="user",
+*         description="User, who works here",
+*         type={"object","null"},
+*         @OA\Schema(ref="#/components/schemas/UserSchemaResponse")
+*     ),
+* )
  */
