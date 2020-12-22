@@ -49,7 +49,7 @@
  * )
  *
  * @OA\Tag(
- *     name="LeaveRequest",
+ *     name="Leave Request",
  *     description="User's leave request",
  * )
  */
@@ -259,7 +259,7 @@
 *         property="workplace",
 *         description="Place where user works",
 *         type="object",
-*         @OA/schema(ref="#/components/schemas/WorkplaceSchema")
+*         @OA\Schema(ref="#/components/schemas/WorkplaceSchema")
 *     ),
 * )
  */

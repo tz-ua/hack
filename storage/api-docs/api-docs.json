@@ -27,7 +27,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserSchema"
+                                    "$ref": "#/components/schemas/UserSchemaRequest"
                                 }
                             }
                         }
@@ -47,7 +47,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/UserSchema"
+                                "$ref": "#/components/schemas/UserSchemaRequest"
                             }
                         }
                     }
@@ -58,7 +58,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserSchema"
+                                    "$ref": "#/components/schemas/UserSchemaResponse"
                                 }
                             }
                         }
@@ -135,7 +135,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/UserSchema"
+                                "$ref": "#/components/schemas/UserSchemaRequest"
                             }
                         }
                     }
@@ -148,7 +148,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/UserSchema"
+                                            "$ref": "#/components/schemas/UserSchemaResponse"
                                         }
                                     },
                                     "type": "object"
@@ -281,6 +281,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/LeaveRequestJsonModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
                                 }
                             }
                         }
@@ -433,7 +443,7 @@
                 },
                 "type": "object"
             },
-            "UserSchema": {
+            "UserSchemaRequest": {
                 "title": "User schema",
                 "description": "User model",
                 "required": [
@@ -491,6 +501,63 @@
                 },
                 "type": "object"
             },
+            "UserSchemaResponse": {
+                "title": "User schema",
+                "description": "User model",
+                "required": [
+                    "name",
+                    "email"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of user",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "John"
+                    },
+                    "email": {
+                        "description": "User's email address",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "john.doe@gmail.com"
+                    },
+                    "photo": {
+                        "description": "Link to user's photo",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "host.com/photo.png"
+                    },
+                    "phone": {
+                        "description": "User's mobile phone number",
+                        "type": "string",
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "example": "+380961234567"
+                    },
+                    "position": {
+                        "description": "User's position in company",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "Project manager"
+                    },
+                    "team": {
+                        "description": "Team of user",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "Nexus"
+                    },
+                    "workplace": {
+                        "description": "Place where user works",
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
             "WorkplaceSchema": {
                 "title": "Workplace schema",
                 "description": "Workplace model",
@@ -521,7 +588,7 @@
             "description": "Member of Hero Teams"
         },
         {
-            "name": "LeaveRequest",
+            "name": "Leave Request",
             "description": "User's leave request"
         }
     ],

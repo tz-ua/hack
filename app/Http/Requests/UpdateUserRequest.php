@@ -30,7 +30,7 @@ class UpdateUserRequest extends FormRequest
             'photo' => 'max:255',
             'position' => 'max:255',
             'team' => 'max:255',
-            'workplace_id' => 'integer', // |unique:workplaces
+            'workplace_id' => 'integer', //|exists:workplaces.id
         ];
     }
 }
