@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Workplace extends Model
@@ -16,15 +16,16 @@ class Workplace extends Model
     ];
 
     protected $with = [
-        'user'
+        'user',
+        'equipment'
     ];
 
     /**
-     * @return MorphOne
+     * @return MorphMany
      */
-    public function equipment(): MorphOne
+    public function equipment(): MorphMany
     {
-        return $this->morphOne(Equipment::class, 'equipmentable');
+        return $this->morphMany(Equipment::class, 'equipmentable');
     }
 
     /**

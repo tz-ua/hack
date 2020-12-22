@@ -324,6 +324,12 @@
  *         type="boolean",
  *        example=true
  *     ),
+ *     @OA\Property(
+ *         property="equipment",
+ *         description="Equipment attached to user",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/EquipmentSchemaResponse")
+ *     ),
  * )
  *
  * @OA\Schema(
@@ -358,5 +364,25 @@
 *         type={"object","null"},
 *         @OA\Schema(ref="#/components/schemas/UserSchemaResponse")
 *     ),
+ *    @OA\Property(
+ *        property="equipment",
+ *        description="Equipment attached to workplace",
+ *        type="array",
+ *        @OA\Items(ref="#/components/schemas/EquipmentSchemaResponse")
+ *    ),
 * )
- */
+*
+* @OA\Schema(
+ *     schema="EquipmentSchemaResponse",
+ *     description="Equipment model",
+ *     title="Equipment attached to User or Workplace",
+ *     @OA\Property(
+ *         property="inventory_number",
+ *         description="Inventory number of equipment",
+ *         type="string",
+ *         example="A101",
+ *         minLength=1,
+ *         maxLength=255,
+ *     )
+ * )
+*/
