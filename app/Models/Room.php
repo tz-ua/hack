@@ -36,4 +36,9 @@ class Room extends Model
     {
         return $this->hasMany(BookRequest::class);
     }
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(RoomType::class);
+    }
 }

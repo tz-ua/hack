@@ -34,6 +34,10 @@ class CreateWorkplacesTable extends Migration
      */
     public function down()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['workplace_id']);
+        });
+
         Schema::dropIfExists('workplaces');
     }
 }
