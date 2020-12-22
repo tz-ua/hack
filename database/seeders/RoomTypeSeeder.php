@@ -17,7 +17,9 @@ class RoomTypeSeeder extends Seeder
         $types = [
             'Game room',
             'Сonference room',
-            'Sport training room'
+            'Sport training room',
+            'Kitchen',
+            'Smoking room'
         ];
 
         foreach ($types as $type) {
