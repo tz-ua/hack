@@ -249,7 +249,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WorkplaceSchema"
+                                    "$ref": "#/components/schemas/WorkplaceSchemaResponse"
                                 }
                             }
                         }
@@ -269,7 +269,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/WorkplaceSchema"
+                                "$ref": "#/components/schemas/WorkplaceSchemaRequest"
                             }
                         }
                     }
@@ -280,7 +280,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WorkplaceSchema"
+                                    "$ref": "#/components/schemas/WorkplaceSchemaResponse"
                                 }
                             }
                         }
@@ -323,7 +323,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WorkplaceSchema"
+                                    "$ref": "#/components/schemas/WorkplaceSchemaResponse"
                                 }
                             }
                         }
@@ -398,8 +398,8 @@
                 "type": "object"
             },
             "UserSchemaRequest": {
-                "title": "User schema",
-                "description": "User model",
+                "title": "User schema request",
+                "description": "User model for request",
                 "required": [
                     "name",
                     "email"
@@ -456,8 +456,8 @@
                 "type": "object"
             },
             "UserSchemaResponse": {
-                "title": "User schema",
-                "description": "User model",
+                "title": "User schema response",
+                "description": "User model for response",
                 "required": [
                     "name",
                     "email"
@@ -517,9 +517,9 @@
                 },
                 "type": "object"
             },
-            "WorkplaceSchema": {
-                "title": "Workplace schema",
-                "description": "Workplace model",
+            "WorkplaceSchemaRequest": {
+                "title": "Workplace schema request",
+                "description": "Workplace model for request",
                 "properties": {
                     "name": {
                         "description": "Workplace identity name",
@@ -527,6 +527,27 @@
                         "maxLength": 100,
                         "minLength": 1,
                         "example": "Johnny Sins workplace"
+                    }
+                },
+                "type": "object"
+            },
+            "WorkplaceSchemaResponse": {
+                "title": "Workplace schema response",
+                "description": "Workplace model for response",
+                "properties": {
+                    "name": {
+                        "description": "Workplace identity name",
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "example": "Johnny Sins workplace"
+                    },
+                    "user": {
+                        "description": "User, who works here",
+                        "type": [
+                            "object",
+                            "null"
+                        ]
                     }
                 },
                 "type": "object"
