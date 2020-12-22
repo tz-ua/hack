@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LeaveRequest\CreateRequest;
 use App\Models\LeaveRequest;
 use Illuminate\Http\JsonResponse;
@@ -56,7 +57,12 @@ class LeaveRequestController extends Controller
      *         response=200,
      *         description="Successfull operation",
      *         @OA\JsonContent(ref="#/components/schemas/LeaveRequestJsonModel")
-     *     )
+     *     ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse")
+     *      )
      * )
      */
     public function create(CreateRequest $createRequest): JsonResponse

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\WorkplaceController;
-use App\Http\Controllers\LeaveRequestController;
+use App\Http\Controllers\API\LeaveRequestController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +41,7 @@ Route::prefix('workplaces')
     ->group(static function (): void {
         Route::get('', [WorkplaceController::class, 'index'])->name('index');
         Route::post('', [WorkplaceController::class, 'create'])->name('store');
+        Route::get('{workplace}', [WorkplaceController::class, 'show'])->name('show');
     });
 
 Route::post('/test', [TestController::class, 'testPost'])
