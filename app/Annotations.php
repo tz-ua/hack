@@ -47,6 +47,11 @@
  *     name="Leave Request",
  *     description="User's leave request",
  * )
+ *
+ * @OA\Tag(
+ *     name="Book Request",
+ *     description="Book request",
+ * )
  */
 
 /**
@@ -122,15 +127,86 @@
  *     )
  * )
  *
-* @OA\Schema(
-*     schema="UserSchemaRequest",
-*     description="User model for request",
-*     title="User schema request",
-*     required={"name", "email"},
-*     @OA\Property(
-*         property="name",
-*         description="Name of user",
-*         type="string",
+ * @OA\Schema(
+ *     schema="BookRequestJsonRequest",
+ *     description="Book Request validation request",
+ *     title="Book Request validation request",
+ *     @OA\Property(
+ *         property="user_id",
+ *         description="User id",
+ *         type="integer"
+ *     ),
+ *     @OA\Property(
+ *         property="room_id",
+ *         description="Room id",
+ *         type="integer"
+ *     ),
+ *     @OA\Property(
+ *         property="from",
+ *         description="Booked from date time",
+ *         type="string",
+ *         example="2020-12-20 20:20:20"
+ *     ),
+ *     @OA\Property(
+ *         property="to",
+ *         description="Booked to date time",
+ *         type="string",
+ *         example="2020-12-20 20:20:20"
+ *     )
+ * )
+ *
+ * @OA\Schema(
+ *     schema="BookRequestJsonModel",
+ *     description="Book Request",
+ *     title="Book Request",
+ *     @OA\Property(
+ *         property="id",
+ *         description="Id",
+ *         type="integer"
+ *     ),
+ *     @OA\Property(
+ *         property="user_id",
+ *         description="User id",
+ *         type="integer"
+ *     ),
+ *     @OA\Property(
+ *         property="room_id",
+ *         description="Room id",
+ *         type="integer"
+ *     ),
+ *     @OA\Property(
+ *         property="from",
+ *         description="Booked from date time",
+ *         type="string",
+ *         example="2020-12-20 20:20:20"
+ *     ),
+ *     @OA\Property(
+ *         property="to",
+ *         description="Booked to date time",
+ *         type="string",
+ *         example="2020-12-20 20:20:20"
+ *     ),
+ *     @OA\Property(
+ *         property="create_at",
+ *         description="Created at",
+ *         type="string"
+ *     ),
+ *     @OA\Property(
+ *         property="updated_at",
+ *         description="Updated at",
+ *         type="string"
+ *     )
+ * )
+ *
+ * @OA\Schema(
+ *     schema="UserSchemaRequest",
+ *     description="User model for request",
+ *     title="User schema request",
+ *     required={"name", "email"},
+ *     @OA\Property(
+ *         property="name",
+ *         description="Name of user",
+ *         type="string",
 *         example="John",
 *         minLength=1,
 *         maxLength=255,
@@ -240,7 +316,7 @@
  *         property="workplace",
  *         description="Place where user works",
  *         type="object",
- *         @OA\Schema(ref="#/components/schemas/WorkplaceSchema")
+ *         @OA\Schema(ref="#/components/schemas/WorkplaceSchemaResponse")
  *     ),
  *     @OA\Property(
  *         property="online",
@@ -249,4 +325,38 @@
  *        example=true
  *     ),
  * )
+ *
+ * @OA\Schema(
+*     schema="WorkplaceSchemaRequest",
+*     description="Workplace model for request",
+*     title="Workplace schema request",
+*     @OA\Property(
+*         property="name",
+*         description="Workplace identity name",
+*         type="string",
+*         example="Johnny Sins workplace",
+*         minLength=1,
+*         maxLength=100,
+*     ),
+* )
+*
+* @OA\Schema(
+*     schema="WorkplaceSchemaResponse",
+*     description="Workplace model for response",
+*     title="Workplace schema response",
+*     @OA\Property(
+*         property="name",
+*         description="Workplace identity name",
+*         type="string",
+*         example="Johnny Sins workplace",
+*         minLength=1,
+*         maxLength=100,
+*     ),
+*     @OA\Property(
+*         property="user",
+*         description="User, who works here",
+*         type={"object","null"},
+*         @OA\Schema(ref="#/components/schemas/UserSchemaResponse")
+*     ),
+* )
  */

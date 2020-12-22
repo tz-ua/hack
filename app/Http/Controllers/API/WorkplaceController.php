@@ -26,7 +26,7 @@ class WorkplaceController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchemaResponse")
      *     )
      * )
      */
@@ -50,12 +50,12 @@ class WorkplaceController extends Controller
      *      @OA\RequestBody(
      *         required=true,
      *         description="Json Content",
-     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchemaRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchemaResponse")
      *     ),
      *      @OA\Response(
      *          response=422,
@@ -94,7 +94,7 @@ class WorkplaceController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchema")
+     *         @OA\JsonContent(ref="#/components/schemas/WorkplaceSchemaResponse")
      *     )
      * )
      */

@@ -48,6 +48,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static Builder|User whereUpdatedAt($value)
  * @method static Builder|User whereWorkplaceId($value)
  * @mixin Eloquent
+ * @property-read Collection|BookRequest[]                              $book_requests
+ * @property-read int|null                                              $book_requests_count
  */
 class User extends Authenticatable
 {
@@ -72,6 +74,14 @@ class User extends Authenticatable
         'online',
     ];
 
+    protected $with = [
+        'workplace'
+    ];
+
+    protected $hidden = [
+        'workplace_id'
+    ];
+
     /**
      * @return BelongsTo
      */
@@ -94,6 +104,14 @@ class User extends Authenticatable
     public function leave_requests(): HasMany
     {
         return $this->hasMany(LeaveRequest::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function book_requests(): HasMany
+    {
+        return $this->hasMany(BookRequest::class);
     }
 
     /**
