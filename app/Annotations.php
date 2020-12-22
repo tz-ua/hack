@@ -359,4 +359,74 @@
 *         @OA\Schema(ref="#/components/schemas/UserSchemaResponse")
 *     ),
 * )
+*
+* @OA\Schema(
+*     schema="RoomTypeSchemaResponse",
+*     description="RoomType model for response",
+*     title="RoomType schema response",
+*     @OA\Property(
+*         property="name",
+*         description="Room type identity name",
+*         type="string",
+*         example="Game room",
+*         minLength=1,
+*         maxLength=255,
+*     ),
+* )
+*
+* @OA\Schema(
+*     schema="RoomSchemaRequest",
+*     description="Room model for request",
+*     title="Room schema request",
+*     @OA\Property(
+*         property="name",
+*         description="Room identity name",
+*         type="string",
+*         example="Room where Johnny Sins work",
+*         minLength=1,
+*         maxLength=255,
+*     ),
+*     @OA\Property(
+*         property="photo",
+*         description="Link to room's photo",
+*         type="string",
+*         example="host.com/photo.png",
+*         minLength=1,
+*         maxLength=255,
+*     ),
+ *     @OA\Property(
+ *         property="type_id",
+ *         description="Type of room",
+ *         type="integer",
+ *         example=1
+ *     ),
+* )
+*
+* @OA\Schema(
+*     schema="RoomSchemaResponse",
+*     description="Workplace model for response",
+*     title="Workplace schema response",
+*     @OA\Property(
+*         property="name",
+*         description="Room identity name",
+*         type="string",
+*         example="Room where Johnny Sins work",
+*         minLength=1,
+*         maxLength=255,
+*     ),
+*     @OA\Property(
+*         property="photo",
+*         description="Link to room's photo",
+*         type="string",
+*         example="host.com/photo.png",
+*         minLength=1,
+*         maxLength=255,
+*     ),
+ *     @OA\Property(
+ *         property="type",
+ *         description="Type of room",
+ *         type={"object","null"},
+*          @OA\Schema(ref="#/components/schemas/RoomTypeSchemaResponse")
+ *     ),
+* )
  */

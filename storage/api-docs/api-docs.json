@@ -321,6 +321,165 @@
                 }
             }
         },
+        "/api/rooms": {
+            "get": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Get list of Rooms",
+                "description": "Returns list of Rooms",
+                "operationId": "roomIndex",
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RoomSchemaResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Create Room",
+                "description": "Create new Room",
+                "operationId": "roomCreate",
+                "requestBody": {
+                    "description": "Json Content",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RoomSchemaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RoomSchemaResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/rooms/{id}": {
+            "delete": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Delete Room",
+                "description": "Delete existing Room",
+                "operationId": "roomDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of Room",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Update Room",
+                "description": "Update existing room",
+                "operationId": "roomUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of Room",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Keyword data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RoomSchemaRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/RoomSchemaResponse"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -815,9 +974,10 @@
                         "minLength": 1,
                         "example": "Nexus"
                     },
-                    "workplace": {
+                    "workplace_id": {
                         "description": "Place where user works",
-                        "type": "object"
+                        "type": "integer",
+                        "example": 1
                     },
                     "online": {
                         "description": "Is user online",
@@ -854,6 +1014,74 @@
                     },
                     "user": {
                         "description": "User, who works here",
+                        "type": [
+                            "object",
+                            "null"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "RoomTypeSchemaResponse": {
+                "title": "RoomType schema response",
+                "description": "RoomType model for response",
+                "properties": {
+                    "name": {
+                        "description": "Room type identity name",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "Game room"
+                    }
+                },
+                "type": "object"
+            },
+            "RoomSchemaRequest": {
+                "title": "Room schema request",
+                "description": "Room model for request",
+                "properties": {
+                    "name": {
+                        "description": "Room identity name",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "Room where Johnny Sins work"
+                    },
+                    "photo": {
+                        "description": "Link to room's photo",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "host.com/photo.png"
+                    },
+                    "type_id": {
+                        "description": "Type of room",
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "RoomSchemaResponse": {
+                "title": "Workplace schema response",
+                "description": "Workplace model for response",
+                "properties": {
+                    "name": {
+                        "description": "Room identity name",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "Room where Johnny Sins work"
+                    },
+                    "photo": {
+                        "description": "Link to room's photo",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "host.com/photo.png"
+                    },
+                    "type": {
+                        "description": "Type of room",
                         "type": [
                             "object",
                             "null"
