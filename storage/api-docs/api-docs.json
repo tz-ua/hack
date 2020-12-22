@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "rado",
+        "title": "Rado",
         "description": "Documentation for hackaton project",
         "contact": {
             "email": "mail@example.com"
@@ -159,7 +159,10 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserSchemaResponse"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserSchemaResponse"
+                                    }
                                 }
                             }
                         }
@@ -315,7 +318,10 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WorkplaceSchemaResponse"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/WorkplaceSchemaResponse"
+                                    }
                                 }
                             }
                         }

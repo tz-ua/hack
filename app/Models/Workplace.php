@@ -15,6 +15,10 @@ class Workplace extends Model
         'name'
     ];
 
+    protected $with = [
+        'user'
+    ];
+
     /**
      * @return MorphOne
      */
