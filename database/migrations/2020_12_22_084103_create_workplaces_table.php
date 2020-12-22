@@ -18,6 +18,13 @@ class CreateWorkplacesTable extends Migration
             $table->string('name', 100);
             $table->timestamps();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table
+                ->foreign('workplace_id')
+                ->references('id')
+                ->on('workplaces');
+        });
     }
 
     /**
