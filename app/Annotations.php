@@ -278,8 +278,8 @@
 *     ),
 *     @OA\Property(
 *         property="user",
-*         description="User who works here",
-*         type="object",
+*         description="User, who works here",
+*         type={"object","null"},
 *         @OA\Schema(ref="#/components/schemas/UserSchemaResponse")
 *     ),
 * )
