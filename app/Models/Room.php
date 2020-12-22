@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -29,6 +31,8 @@ class Room extends Model
         'photo'
     ];
 
+    protected $appends = ['future_book_requests'];
+
     /**
      * @return HasMany
      */
@@ -40,5 +44,16 @@ class Room extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(RoomType::class);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getFutureBookRequestsAttribute(): bool
+    {
+        $now = Carbon::now()->toDateTimeString();
+        return !$this->book_requests()
+            ->where('to', '>=', $now)
+            ->get();
     }
 }

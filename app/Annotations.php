@@ -207,7 +207,7 @@
  *         property="name",
  *         description="Name of user",
  *         type="string",
-*         example="John",
+ *         example="John",
 *         minLength=1,
 *         maxLength=255,
 *     ),
@@ -396,23 +396,23 @@
 *         type="string",
 *         example="Room where Johnny Sins work",
 *         minLength=1,
-*         maxLength=255,
-*     ),
-*     @OA\Property(
-*         property="photo",
-*         description="Link to room's photo",
-*         type="string",
-*         example="host.com/photo.png",
-*         minLength=1,
-*         maxLength=255,
-*     ),
+ *         maxLength=255,
+ *     ),
+ *     @OA\Property(
+ *         property="photo",
+ *         description="Link to room's photo",
+ *         type="string",
+ *         example="host.com/photo.png",
+ *         minLength=1,
+ *         maxLength=255,
+ *     ),
  *     @OA\Property(
  *         property="type_id",
  *         description="Type of room",
  *         type="integer",
  *         example=1
  *     ),
-* )
+ * )
 *
 * @OA\Schema(
 *     schema="RoomSchemaResponse",
@@ -430,17 +430,22 @@
 *         property="photo",
 *         description="Link to room's photo",
 *         type="string",
-*         example="host.com/photo.png",
-*         minLength=1,
-*         maxLength=255,
-*     ),
-*     @OA\Property(
-*         property="type",
-*         description="Type of room",
-*         type={"object","null"},
-*          @OA\Schema(ref="#/components/schemas/RoomTypeSchemaResponse")
-*     ),
-* )
+ *         example="host.com/photo.png",
+ *         minLength=1,
+ *         maxLength=255,
+ *     ),
+ *     @OA\Property(
+ *         property="type",
+ *         description="Type of room",
+ *         type={"object","null"},
+ *         @OA\Schema(ref="#/components/schemas/RoomTypeSchemaResponse")
+ *     ),
+ *     @OA\Property(
+ *         property="future_book_requests",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/BookRequestJsonModel")
+ *     ),
+ * )
 *
 * @OA\Schema(
 *     schema="EquipmentSchemaResponse",

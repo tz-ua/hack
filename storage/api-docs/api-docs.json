@@ -1100,6 +1100,13 @@
                             "object",
                             "null"
                         ]
+                    },
+                    "future_book_requests": {
+                        "description": "Common Schema Objects",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BookRequestJsonModel"
+                        }
                     }
                 },
                 "type": "object"

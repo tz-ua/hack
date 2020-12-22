@@ -14,7 +14,7 @@ class RoomController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return JsonResponse
      *
      * @OA\Get(
      *      path="/api/rooms",
