@@ -83,4 +83,61 @@
  *         maxLength=255
  *     )
  * )
+ *
+ * @OA\Schema(
+ *     schema="LeaveRequestJsonRequest",
+ *     description="Leave Request validation request",
+ *     title="Leave Request validation request",
+ *     @OA\Property(
+ *         property="user_id",
+ *         description="User id",
+ *         type="integer"
+ *     ),
+ *     @OA\Property(
+ *         property="start_date",
+ *         description="Start date",
+ *         type="string"
+ *     ),
+ *     @OA\Property(
+ *         property="end_date",
+ *         description="End date",
+ *         type="string"
+ *     )
+ * )
+ *
+ * @OA\Schema(
+ *     schema="LeaveRequestJsonModel",
+ *     description="Leave Request",
+ *     title="Leave Request",
+ *     @OA\Property(
+ *         property="id",
+ *         description="Id",
+ *         type="integer"
+ *     ),
+ *     @OA\Property(
+ *         property="user_id",
+ *         description="User id",
+ *         type="integer"
+ *     ),
+ *     @OA\Property(
+ *         property="start_date",
+ *         description="Start date",
+ *         type="string"
+ *     ),
+ *     @OA\Property(
+ *         property="end_date",
+ *         description="End date",
+ *         type="string"
+ *     ),
+ *     @OA\Property(
+ *         property="create_at",
+ *         description="Created at",
+ *         type="string"
+ *     ),
+ *     @OA\Property(
+ *         property="updated_at",
+ *         description="Updated at",
+ *         type="string"
+ *     )
+ * )
  */

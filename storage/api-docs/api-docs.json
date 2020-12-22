@@ -66,6 +66,62 @@
                 }
             }
         },
+        "/api/leave_requests": {
+            "get": {
+                "tags": [
+                    "Leave Request"
+                ],
+                "summary": "Get list of Leave Requests",
+                "description": "Returns list of Leave Requests",
+                "operationId": "leaveRequestList",
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LeaveRequestJsonModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Leave Request"
+                ],
+                "summary": "Create Leave Request",
+                "description": "Create new Leave Request",
+                "operationId": "leaveRequestCreate",
+                "requestBody": {
+                    "description": "Json Content",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LeaveRequestJsonRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LeaveRequestJsonModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/test": {
             "get": {
                 "tags": [
@@ -157,6 +213,56 @@
                         "maxLength": 255,
                         "minLength": 1,
                         "example": "Example value"
+                    }
+                },
+                "type": "object"
+            },
+            "LeaveRequestJsonRequest": {
+                "title": "Leave Request validation request",
+                "description": "Leave Request validation request",
+                "properties": {
+                    "user_id": {
+                        "description": "User id",
+                        "type": "integer"
+                    },
+                    "start_date": {
+                        "description": "Start date",
+                        "type": "string"
+                    },
+                    "end_date": {
+                        "description": "End date",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "LeaveRequestJsonModel": {
+                "title": "Leave Request",
+                "description": "Leave Request",
+                "properties": {
+                    "id": {
+                        "description": "Id",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "description": "User id",
+                        "type": "integer"
+                    },
+                    "start_date": {
+                        "description": "Start date",
+                        "type": "string"
+                    },
+                    "end_date": {
+                        "description": "End date",
+                        "type": "string"
+                    },
+                    "create_at": {
+                        "description": "Created at",
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "description": "Updated at",
+                        "type": "string"
                     }
                 },
                 "type": "object"

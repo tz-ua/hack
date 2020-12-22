@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\LeaveRequestController;
+use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,14 +23,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('users')
     ->group(static function (): void {
-        Route::get('/', [UserController::class, 'index'])->name('index');
-        Route::post('/', [UserController::class, 'store'])->name('store');
+        Route::get('', [UserController::class, 'index'])->name('index');
+        Route::post('', [UserController::class, 'store'])->name('store');
         Route::patch('{user}', [UserController::class, 'update'])->name('update');
         Route::delete('{user}', [UserController::class, 'destroy'])->name('destroy');
     });
 
-Route::post('/test', [\App\Http\Controllers\TestController::class, 'testPost'])
+Route::group([
+    'prefix' => 'leave_requests'
+], static function () {
+    Route::get('', [LeaveRequestController::class, 'list'])->name('list');
+    Route::post('', [LeaveRequestController::class, 'create'])->name('create');
+});
+
+Route::post('/test', [TestController::class, 'testPost'])
     ->name('testPost');
 
-Route::get('/test', [\App\Http\Controllers\TestController::class, 'testGet'])
+Route::get('/test', [TestController::class, 'testGet'])
     ->name('testGet');
