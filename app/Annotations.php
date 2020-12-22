@@ -37,6 +37,21 @@
  *     name="Authorization",
  *     description="Admin login and other authorization related actions",
  * )
+ *
+ * @OA\Tag(
+ *     name="Workplace",
+ *     description="Entity describing working place of User",
+ * )
+ *
+ * @OA\Tag(
+ *     name="User",
+ *     description="Member of Hero Teams",
+ * )
+ *
+ * @OA\Tag(
+ *     name="LeaveRequest",
+ *     description="User's leave request",
+ * )
  */
 
 /**
