@@ -18,7 +18,7 @@
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="hack",
+ *      title="rado",
  *      description="Documentation for hackaton project",
  *      @OA\Contact(
  *          email="mail@example.com"
@@ -32,11 +32,6 @@
 
 /**
  * Tags
- *
- * @OA\Tag(
- *     name="Authorization",
- *     description="Admin login and other authorization related actions",
- * )
  *
  * @OA\Tag(
  *     name="Workplace",

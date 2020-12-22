@@ -41,6 +41,7 @@ Route::prefix('workplaces')
     ->group(static function (): void {
         Route::get('', [WorkplaceController::class, 'index'])->name('index');
         Route::post('', [WorkplaceController::class, 'create'])->name('store');
+        Route::get('{workplace}', [WorkplaceController::class, 'show'])->name('show');
     });
 
 Route::post('/test', [TestController::class, 'testPost'])

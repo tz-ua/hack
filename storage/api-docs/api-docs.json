@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "hack",
+        "title": "rado",
         "description": "Documentation for hackaton project",
         "contact": {
             "email": "mail@example.com"
@@ -297,6 +297,39 @@
                     }
                 }
             }
+        },
+        "/api/workplaces/{id}": {
+            "get": {
+                "tags": [
+                    "Workplace"
+                ],
+                "summary": "Get specific Workplace",
+                "description": "Returns specific Workplace with User detailed information",
+                "operationId": "workplaceGet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of Workplace",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkplaceSchema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -501,10 +534,6 @@
         }
     },
     "tags": [
-        {
-            "name": "Authorization",
-            "description": "Admin login and other authorization related actions"
-        },
         {
             "name": "Workplace",
             "description": "Entity describing working place of User"
