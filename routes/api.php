@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\API\BookRequestController;
+use App\Http\Controllers\API\LeaveRequestController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\WorkplaceController;
-use App\Http\Controllers\API\LeaveRequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +35,8 @@ Route::group([
 ], static function () {
     Route::get('', [LeaveRequestController::class, 'list'])->name('list');
     Route::post('', [LeaveRequestController::class, 'create'])->name('create');
+    Route::patch('{leaveRequest}', [LeaveRequestController::class, 'update'])->name('update');
+    Route::delete('{leaveRequest}', [LeaveRequestController::class, 'destroy'])->name('destroy');
 });
 
 Route::group([
