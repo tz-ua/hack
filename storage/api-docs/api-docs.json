@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "hack",
+        "title": "rado",
         "description": "Documentation for hackaton project",
         "contact": {
             "email": "mail@example.com"
@@ -13,6 +13,72 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/book_requests": {
+            "get": {
+                "tags": [
+                    "Book Request"
+                ],
+                "summary": "Get list of Book Requests",
+                "description": "Returns list of Book Requests",
+                "operationId": "bookRequestList",
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BookRequestJsonModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Book Request"
+                ],
+                "summary": "Create Book Request",
+                "description": "Create new Book Request",
+                "operationId": "bookRequestCreate",
+                "requestBody": {
+                    "description": "Json Content",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookRequestJsonRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookRequestJsonModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/leave_requests": {
             "get": {
                 "tags": [
@@ -249,7 +315,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WorkplaceSchema"
+                                    "$ref": "#/components/schemas/WorkplaceSchemaResponse"
                                 }
                             }
                         }
@@ -269,7 +335,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/WorkplaceSchema"
+                                "$ref": "#/components/schemas/WorkplaceSchemaRequest"
                             }
                         }
                     }
@@ -280,7 +346,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WorkplaceSchema"
+                                    "$ref": "#/components/schemas/WorkplaceSchemaResponse"
                                 }
                             }
                         }
@@ -291,6 +357,39 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/workplaces/{id}": {
+            "get": {
+                "tags": [
+                    "Workplace"
+                ],
+                "summary": "Get specific Workplace",
+                "description": "Returns specific Workplace with User detailed information",
+                "operationId": "workplaceGet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of Workplace",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkplaceSchemaResponse"
                                 }
                             }
                         }
@@ -364,9 +463,71 @@
                 },
                 "type": "object"
             },
+            "BookRequestJsonRequest": {
+                "title": "Book Request validation request",
+                "description": "Book Request validation request",
+                "properties": {
+                    "user_id": {
+                        "description": "User id",
+                        "type": "integer"
+                    },
+                    "room_id": {
+                        "description": "Room id",
+                        "type": "integer"
+                    },
+                    "from": {
+                        "description": "Booked from date time",
+                        "type": "string",
+                        "example": "2020-12-20 20:20:20"
+                    },
+                    "to": {
+                        "description": "Booked to date time",
+                        "type": "string",
+                        "example": "2020-12-20 20:20:20"
+                    }
+                },
+                "type": "object"
+            },
+            "BookRequestJsonModel": {
+                "title": "Book Request",
+                "description": "Book Request",
+                "properties": {
+                    "id": {
+                        "description": "Id",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "description": "User id",
+                        "type": "integer"
+                    },
+                    "room_id": {
+                        "description": "Room id",
+                        "type": "integer"
+                    },
+                    "from": {
+                        "description": "Booked from date time",
+                        "type": "string",
+                        "example": "2020-12-20 20:20:20"
+                    },
+                    "to": {
+                        "description": "Booked to date time",
+                        "type": "string",
+                        "example": "2020-12-20 20:20:20"
+                    },
+                    "create_at": {
+                        "description": "Created at",
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "description": "Updated at",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "UserSchemaRequest": {
-                "title": "User schema",
-                "description": "User model",
+                "title": "User schema request",
+                "description": "User model for request",
                 "required": [
                     "name",
                     "email"
@@ -423,8 +584,8 @@
                 "type": "object"
             },
             "UserSchemaResponse": {
-                "title": "User schema",
-                "description": "User model",
+                "title": "User schema response",
+                "description": "User model for response",
                 "required": [
                     "name",
                     "email"
@@ -484,9 +645,9 @@
                 },
                 "type": "object"
             },
-            "WorkplaceSchema": {
-                "title": "Workplace schema",
-                "description": "Workplace model",
+            "WorkplaceSchemaRequest": {
+                "title": "Workplace schema request",
+                "description": "Workplace model for request",
                 "properties": {
                     "name": {
                         "description": "Workplace identity name",
@@ -497,14 +658,31 @@
                     }
                 },
                 "type": "object"
+            },
+            "WorkplaceSchemaResponse": {
+                "title": "Workplace schema response",
+                "description": "Workplace model for response",
+                "properties": {
+                    "name": {
+                        "description": "Workplace identity name",
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "example": "Johnny Sins workplace"
+                    },
+                    "user": {
+                        "description": "User, who works here",
+                        "type": [
+                            "object",
+                            "null"
+                        ]
+                    }
+                },
+                "type": "object"
             }
         }
     },
     "tags": [
-        {
-            "name": "Authorization",
-            "description": "Admin login and other authorization related actions"
-        },
         {
             "name": "Workplace",
             "description": "Entity describing working place of User"
@@ -516,6 +694,10 @@
         {
             "name": "Leave Request",
             "description": "User's leave request"
+        },
+        {
+            "name": "Book Request",
+            "description": "Book request"
         }
     ],
     "security": [

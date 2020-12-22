@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
@@ -47,6 +48,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static Builder|User whereUpdatedAt($value)
  * @method static Builder|User whereWorkplaceId($value)
  * @mixin Eloquent
+ * @property-read Collection|BookRequest[]                              $book_requests
+ * @property-read int|null                                              $book_requests_count
  */
 class User extends Authenticatable
 {
@@ -71,6 +74,14 @@ class User extends Authenticatable
         'online',
     ];
 
+    protected $with = [
+        'workplace'
+    ];
+
+    protected $hidden = [
+        'workplace_id'
+    ];
+
     /**
      * @return BelongsTo
      */
@@ -80,11 +91,27 @@ class User extends Authenticatable
     }
 
     /**
+     * @return MorphOne
+     */
+    public function equipment(): MorphOne
+    {
+        return $this->morphOne(Equipment::class, 'equipmentable');
+    }
+
+    /**
      * @return HasMany
      */
     public function leave_requests(): HasMany
     {
         return $this->hasMany(LeaveRequest::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function book_requests(): HasMany
+    {
+        return $this->hasMany(BookRequest::class);
     }
 
     /**

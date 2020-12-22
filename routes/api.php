@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\BookRequestController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\WorkplaceController;
 use App\Http\Controllers\API\LeaveRequestController;
-use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,14 +37,17 @@ Route::group([
     Route::post('', [LeaveRequestController::class, 'create'])->name('create');
 });
 
+Route::group([
+    'prefix' => 'book_requests'
+], static function () {
+    Route::get('', [BookRequestController::class, 'list'])->name('list');
+    Route::post('', [BookRequestController::class, 'create'])->name('create');
+});
+
 Route::prefix('workplaces')
     ->group(static function (): void {
         Route::get('', [WorkplaceController::class, 'index'])->name('index');
         Route::post('', [WorkplaceController::class, 'create'])->name('store');
+        Route::get('{workplace}', [WorkplaceController::class, 'show'])->name('show');
     });
 
-Route::post('/test', [TestController::class, 'testPost'])
-    ->name('testPost');
-
-Route::get('/test', [TestController::class, 'testGet'])
-    ->name('testGet');

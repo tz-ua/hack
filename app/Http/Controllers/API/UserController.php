@@ -25,7 +25,10 @@ class UserController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(ref="#/components/schemas/UserSchemaResponse")
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/UserSchemaResponse")
+     *         )
      *     )
      * )
      */
