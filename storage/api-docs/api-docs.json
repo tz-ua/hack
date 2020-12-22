@@ -983,6 +983,13 @@
                         "description": "Is user online",
                         "type": "boolean",
                         "example": true
+                    },
+                    "equipment": {
+                        "description": "Equipment attached to user",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EquipmentSchemaResponse"
+                        }
                     }
                 },
                 "type": "object"
@@ -1018,6 +1025,27 @@
                             "object",
                             "null"
                         ]
+                    },
+                    "equipment": {
+                        "description": "Equipment attached to workplace",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EquipmentSchemaResponse"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "EquipmentSchemaResponse": {
+                "title": "Equipment attached to User or Workplace",
+                "description": "Equipment model",
+                "properties": {
+                    "inventory_number": {
+                        "description": "Inventory number of equipment",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "A101"
                     }
                 },
                 "type": "object"

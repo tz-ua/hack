@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
@@ -74,6 +74,10 @@ class User extends Authenticatable
         'online',
     ];
 
+    protected $with = [
+        'equipment'
+    ];
+
     /**
      * @return BelongsTo
      */
@@ -83,11 +87,11 @@ class User extends Authenticatable
     }
 
     /**
-     * @return MorphOne
+     * @return MorphMany
      */
-    public function equipment(): MorphOne
+    public function equipment(): MorphMany
     {
-        return $this->morphOne(Equipment::class, 'equipmentable');
+        return $this->morphMany(Equipment::class, 'equipmentable');
     }
 
     /**
