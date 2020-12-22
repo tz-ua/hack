@@ -40,7 +40,7 @@ class WorkplaceController extends Controller
      * @return \Illuminate\Http\Response
      *
      * @OA\Post(
-     *      path="/api/users",
+     *      path="/api/workplaces",
      *      tags={"Workplace"},
      *      operationId="workplaceCreate",
      *      summary="Create new Workplace",
@@ -58,7 +58,7 @@ class WorkplaceController extends Controller
      *      @OA\Response(
      *          response=422,
      *          description="Validation error",
-     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse")
      *      )
      * )
      */

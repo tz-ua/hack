@@ -57,7 +57,7 @@ class UserController extends Controller
      *      @OA\Response(
      *          response=422,
      *          description="Validation error",
-     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse")
      *      )
      * )
      */
@@ -106,7 +106,7 @@ class UserController extends Controller
      *      @OA\Response(
      *          response=422,
      *          description="Validation error",
-     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse")
      *      )
      * )
      */
