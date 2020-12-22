@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,7 @@ class UserController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(
-     *             type="object"
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
      *     )
      * )
      */
@@ -48,41 +47,18 @@ class UserController extends Controller
      *      @OA\RequestBody(
      *         required=true,
      *         description="Json Content",
-     *         @OA\JsonContent(ref="#/components/schemas/TestJsonRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successfull operation",
-     *         @OA\JsonContent(
-     *             type="object"
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
      *     )
      * )
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        // @todo move validation to UserRequest
-        // workplace_id unique:workplaces
-        return User::create($request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email',
-            'phone' => 'max:255',
-            'photo' => 'max:255',
-            'position' => 'max:255',
-            'team' => 'max:255',
-            'workplace_id' => 'integer',
-        ]));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return User::create($request->validated());
     }
 
     /**
@@ -92,7 +68,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -102,9 +78,35 @@ class UserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @OA\Delete(
+     *      path="/api/users/{id}",
+     *      tags={"User"},
+     *      operationId="userDelete",
+     *      summary="Delete User",
+     *      description="Delete existing User",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Id of User",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
+     *      )
+     * )
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
     }
 }
