@@ -1036,20 +1036,6 @@
                 },
                 "type": "object"
             },
-            "EquipmentSchemaResponse": {
-                "title": "Equipment attached to User or Workplace",
-                "description": "Equipment model",
-                "properties": {
-                    "inventory_number": {
-                        "description": "Inventory number of equipment",
-                        "type": "string",
-                        "maxLength": 255,
-                        "minLength": 1,
-                        "example": "A101"
-                    }
-                },
-                "type": "object"
-            },
             "RoomTypeSchemaResponse": {
                 "title": "RoomType schema response",
                 "description": "RoomType model for response",
@@ -1114,6 +1100,20 @@
                             "object",
                             "null"
                         ]
+                    }
+                },
+                "type": "object"
+            },
+            "EquipmentSchemaResponse": {
+                "title": "Equipment attached to User or Workplace",
+                "description": "Equipment model",
+                "properties": {
+                    "inventory_number": {
+                        "description": "Inventory number of equipment",
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "example": "A101"
                     }
                 },
                 "type": "object"
