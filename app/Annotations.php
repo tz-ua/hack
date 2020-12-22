@@ -18,7 +18,7 @@
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="rado",
+ *      title="Rado",
  *      description="Documentation for hackaton project",
  *      @OA\Contact(
  *          email="mail@example.com"
@@ -313,10 +313,10 @@
  *         maxLength=255,
  *     ),
  *     @OA\Property(
- *         property="workplace",
+ *         property="workplace_id",
  *         description="Place where user works",
- *         type="object",
- *         @OA\Schema(ref="#/components/schemas/WorkplaceSchemaResponse")
+ *         type="integer",
+ *         example=1
  *     ),
  *     @OA\Property(
  *         property="online",
