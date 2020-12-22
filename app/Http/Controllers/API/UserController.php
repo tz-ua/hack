@@ -36,7 +36,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      *
      * @OA\Post(
@@ -54,7 +54,12 @@ class UserController extends Controller
      *         response=200,
      *         description="Successfull operation",
      *         @OA\JsonContent(ref="#/components/schemas/UserSchema")
-     *     )
+     *     ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
+     *      )
      * )
      */
     public function store(StoreUserRequest $request)
@@ -138,8 +143,8 @@ class UserController extends Controller
      *          description="Successful operation",
      *      ),
      *      @OA\Response(
-     *          response=401,
-     *          description="Unauthorized",
+     *          response=422,
+     *          description="Validation error",
      *          @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
      *      )
      * )
