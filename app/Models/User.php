@@ -13,7 +13,7 @@ use Illuminate\Notifications\Notifiable;
 *     schema="UserSchema",
 *     description="User model",
 *     title="User schema",
- *     required={"name", "email"},
+*     required={"name", "email"},
 *     @OA\Property(
 *         property="name",
 *         description="Name of user",
@@ -65,8 +65,8 @@ use Illuminate\Notifications\Notifiable;
 *     @OA\Property(
 *         property="workplace_id",
 *         description="Place where user works",
-*         type="int",
-*         example="1"
+*         type="integer",
+*         example=1
 *     ),
 * )
 */
