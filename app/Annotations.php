@@ -124,8 +124,8 @@
  *
 * @OA\Schema(
 *     schema="UserSchemaRequest",
-*     description="User model",
-*     title="User schema",
+*     description="User model for request",
+*     title="User schema request",
 *     required={"name", "email"},
 *     @OA\Property(
 *         property="name",
@@ -185,8 +185,8 @@
 *
 * @OA\Schema(
 *     schema="UserSchemaResponse",
-*     description="User model",
-*     title="User schema",
+*     description="User model for response",
+*     title="User schema response",
 *     required={"name", "email"},
 *     @OA\Property(
 *         property="name",
