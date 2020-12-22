@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\BookRequestController;
 use App\Http\Controllers\API\LeaveRequestController;
+use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\WorkplaceController;
 use Illuminate\Http\Request;
@@ -53,3 +54,10 @@ Route::prefix('workplaces')
         Route::get('{workplace}', [WorkplaceController::class, 'show'])->name('show');
     });
 
+Route::prefix('rooms')
+    ->group(static function (): void {
+        Route::get('', [RoomController::class, 'index'])->name('index');
+        Route::post('', [RoomController::class, 'store'])->name('store');
+        Route::patch('{room}', [RoomController::class, 'update'])->name('update');
+        Route::delete('{room}', [RoomController::class, 'destroy'])->name('destroy');
+    });
