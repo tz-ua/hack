@@ -13,6 +13,72 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/leave_requests": {
+            "get": {
+                "tags": [
+                    "Leave Request"
+                ],
+                "summary": "Get list of Leave Requests",
+                "description": "Returns list of Leave Requests",
+                "operationId": "leaveRequestList",
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LeaveRequestJsonModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Leave Request"
+                ],
+                "summary": "Create Leave Request",
+                "description": "Create new Leave Request",
+                "operationId": "leaveRequestCreate",
+                "requestBody": {
+                    "description": "Json Content",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LeaveRequestJsonRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LeaveRequestJsonModel"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -27,7 +93,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserSchemaRequest"
+                                    "$ref": "#/components/schemas/UserSchemaResponse"
                                 }
                             }
                         }
@@ -215,72 +281,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/WorkplaceSchema"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApiResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/leave_requests": {
-            "get": {
-                "tags": [
-                    "Leave Request"
-                ],
-                "summary": "Get list of Leave Requests",
-                "description": "Returns list of Leave Requests",
-                "operationId": "leaveRequestList",
-                "responses": {
-                    "200": {
-                        "description": "Successfull operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/LeaveRequestJsonModel"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Leave Request"
-                ],
-                "summary": "Create Leave Request",
-                "description": "Create new Leave Request",
-                "operationId": "leaveRequestCreate",
-                "requestBody": {
-                    "description": "Json Content",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/LeaveRequestJsonRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfull operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/LeaveRequestJsonModel"
                                 }
                             }
                         }
@@ -554,6 +554,11 @@
                     "workplace": {
                         "description": "Place where user works",
                         "type": "object"
+                    },
+                    "online": {
+                        "description": "Is user online",
+                        "type": "boolean",
+                        "example": true
                     }
                 },
                 "type": "object"

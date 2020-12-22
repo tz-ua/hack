@@ -252,14 +252,20 @@
 *         description="Team of user",
 *         type="string",
 *         example="Nexus",
-*         minLength=1,
-*         maxLength=255,
-*     ),
-*     @OA\Property(
-*         property="workplace",
-*         description="Place where user works",
-*         type="object",
-*         @OA\Schema(ref="#/components/schemas/WorkplaceSchema")
-*     ),
-* )
+ *         minLength=1,
+ *         maxLength=255,
+ *     ),
+ *     @OA\Property(
+ *         property="workplace",
+ *         description="Place where user works",
+ *         type="object",
+ *         @OA\Schema(ref="#/components/schemas/WorkplaceSchema")
+ *     ),
+ *     @OA\Property(
+ *         property="online",
+ *         description="Is user online",
+ *         type="boolean",
+ *        example=true
+ *     ),
+ * )
  */
