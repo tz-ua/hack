@@ -74,14 +74,6 @@ class User extends Authenticatable
         'online',
     ];
 
-    protected $with = [
-        'workplace'
-    ];
-
-    protected $hidden = [
-        'workplace_id'
-    ];
-
     /**
      * @return BelongsTo
      */

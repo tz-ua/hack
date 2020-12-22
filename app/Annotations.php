@@ -18,7 +18,7 @@
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="rado",
+ *      title="Rado",
  *      description="Documentation for hackaton project",
  *      @OA\Contact(
  *          email="mail@example.com"
