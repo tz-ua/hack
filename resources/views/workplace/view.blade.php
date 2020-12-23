@@ -71,7 +71,7 @@ img {
         </div>
     @endif
 
-    @if (!empty($workplace->user->equipment->isNotEmpty()))
+    @if ($workplace->user && !empty($workplace->user->equipment->isNotEmpty()))
         <div class="user-equipment-wrapper">
 
             <h3>Equipment of {{$workplace->user->name}}</h3>
